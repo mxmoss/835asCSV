@@ -14,7 +14,6 @@
 from bs4 import BeautifulSoup
 
 import urllib.request		# this for python 3 and later
-import requests
 
 # 835 status codes published online by WPC
 myURL = "www.wpc-edi.com/reference/codelists/healthcare/claim-adjustment-reason-codes/"
@@ -32,8 +31,8 @@ data = [[td.findChildren(text=True) for td in tr.findAll("td")] for tr in rows]
 print("//automatically from www.wpc-edi.com Claim Adjustment Reason Codes ASC X12 External Code Source 139 ")
 
 for item in data:
-  #truncate before any "Notes"
-  if item[1][0].find('Note:') > 0 :
-    print(CSV_OUT.format(item[0][0], item[1][0][:item[1][0].find('Note:')]))
-  else:
-    print(CSV_OUT.format(item[0][0], item[1][0]))
+#truncate before any "Notes"
+    if item[1][0].find('Note:') > 0 :
+        print(CSV_OUT.format(item[0][0], item[1][0][:item[1][0].find('Note:')]))
+    else:
+        print(CSV_OUT.format(item[0][0], item[1][0]))
